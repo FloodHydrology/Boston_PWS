@@ -73,18 +73,7 @@ extracterize<-function(r, #Large Raster
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Step 4: Extract raster data by township ---------------------------------------
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#apply function to townships ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# town_wells <-
-#   lapply(
-#     X=seq(1, nrow(towns)),
-#     FUN = function(n){
-#       extracterize(
-#         r = wells,
-#         p = towns[n,],
-#         uid = towns$TOWN_ID[n])}) %>%
-#   bind_rows()
-
-#4.1 Apply function to blocks --------------------------------------------------
+#Apply function to blocks 
 #Create wrapper function
 fun <- function(n){
   extracterize(
@@ -118,6 +107,10 @@ output
 
 #Turn off clusters
 stopCluster(cl)
+
+#Export
+blocks_export<-left_join
+st_write(blocks, "docs/blocks_well_pop.shp")
 
 #
 # write.csv(export, "export.csv")
