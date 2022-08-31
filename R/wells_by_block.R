@@ -109,8 +109,6 @@ output
 stopCluster(cl)
 
 #Export
-blocks_export<-left_join
-st_write(blocks, "docs/blocks_well_pop.shp")
-
-#
-# write.csv(export, "export.csv")
+blocks_export<-left_join(blocks, output)
+st_write(blocks_export, "docs/blocks_well_pop_2.shp", append = T)
+write.csv(output, "docs/output.csv")
